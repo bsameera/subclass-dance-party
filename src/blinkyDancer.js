@@ -1,7 +1,7 @@
 // refactor this function to be psuedoclassical
 var makeBlinkyDancer = function(top, left, timeBetweenSteps) {
   // use call to add inheritance
-  makeDancer.call(this);
+  makeDancer.call(this, top, left, timeBetweenSteps);
   // var blinkyDancer = makeDancer(top, left, timeBetweenSteps);
 
   // we plan to overwrite the step function below, but we still want the superclass step behavior to work,
@@ -22,12 +22,10 @@ var makeBlinkyDancer = function(top, left, timeBetweenSteps) {
 
   // return blinkyDancer;
 };
+makeBlinkyDancer.prototype = Object.create(makeDancer.prototype);
+makeBlinkyDancer.prototype.constructor = makeBlinkyDancer;
 
-makeBlinkyDancer.prototype.oldStep = function() {
-  return this.step;
-};
-
-makeBlinkyDancer.prototype.step = function() {
-  this.oldStep();
+makeBlinkyDancer.prototype.step = function(timeBetweenSteps) {
+  makeDancer.prototype.step.call(this, timeBetweenSteps);
   this.$node.toggle();
 };

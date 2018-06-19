@@ -1,4 +1,5 @@
 // Creates and returns a new dancer object that can step
+//pseudoclassical instantiation
 var makeDancer = function(top, left, timeBetweenSteps) {
 
   //var dancer = {};
@@ -11,7 +12,7 @@ var makeDancer = function(top, left, timeBetweenSteps) {
     // it just schedules the next step
     setTimeout(dancer.step, timeBetweenSteps);
   };  */
-  // this.step();
+  this.step(timeBetweenSteps);
 
   /*dancer.setPosition = function(top, left) {
     // Use css top and left properties to position our <span> tag
@@ -26,13 +27,13 @@ var makeDancer = function(top, left, timeBetweenSteps) {
 
   // now that we have defined the dancer object, we can start setting up important parts of it by calling the methods we wrote
   // this one sets the position to some random default point within the body
-  // this.setPosition(top, left);
+  this.setPosition(top, left);
 
   //return dancer;
 };
 
-makeDancer.prototype.step = function() {
-  setTimeout(this.step, timeBetweenSteps);
+makeDancer.prototype.step = function(timeBetweenSteps) {
+  setTimeout(this.step.bind(this, timeBetweenSteps), timeBetweenSteps);
 };
 
 makeDancer.prototype.setPosition = function(top, left) {
