@@ -21,13 +21,35 @@ $(document).ready(function() {
     var dancerMakerFunction = window[dancerMakerFunctionName];
 
     // make a dancer with a random position
-
     var dancer = new dancerMakerFunction(
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
       Math.random() * 1000
     );
     $('body').append(dancer.$node);
+    dancers.push(dancer);
   });
+  // create a new click event for lineup
+  $('.lineUp').on('click', function(event) {
+    // get the number of dancers
+    var numOfDancers = dancers.length;
+    // get the height and width of the screen
+    var height = $("body").height();
+    var width = $("body").width();
+    var yPosition = height / 2;
+    // calculate each new position
+    // determine the position of the first dancer
+    var xPosition = 50;
+    // iterate through the dancers array, set the first dancer's position
+    // for each other dancer increment its x position
+    var increment = (width - 150)/(numOfDancers - 1);
+    for (var i = 0; i < numOfDancers; i++) {
+      // change their positions
+      dancers[i].setPosition(yPosition, xPosition);
+      xPosition = xPosition + increment;
+    }
+
+  })
 });
+
 
