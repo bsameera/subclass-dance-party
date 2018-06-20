@@ -28,3 +28,12 @@ body, a:link, a:visited, a:active{
   border-radius:10px;
   position:absolute;
 }
+
+.rotater{
+  border:0px;
+  border-radius: 0px;
+} 
+
+.wiggle {
+  background-image: url("media/background.jpg");
+}
