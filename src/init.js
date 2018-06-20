@@ -48,8 +48,28 @@ $(document).ready(function() {
       dancers[i].setPosition(yPosition, xPosition);
       xPosition = xPosition + increment;
     }
+  });
 
-  })
+  //create a mousehover event for Wiggle dancer
+  $("body").on('mouseenter', '.wiggle', function (event) {
+    //the dancer has to wiggle when mouse over
+    var id = $(this).attr('id');
+    var target;
+    for (let dancer of dancers) {
+      console.log(dancer.id);
+      if (dancer.id === +id) {
+        target = dancer;
+      }
+    }
+    target.dontWait = true;
+    // $('.wiggle').on('mouseover', function (event) {
+    //   $('.wiggle').fadeToggle();})
+  });
+  
+  //make the dancer stop wiggling when the mouse leaves
+
+
+  
 });
 
 
